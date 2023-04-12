@@ -1,0 +1,3 @@
+name: CraftGPT
+version: '${project.version}'
+main: com.poperie.craftgpt.CraftGPT
