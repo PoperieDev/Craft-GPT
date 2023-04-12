@@ -26,7 +26,7 @@ public class chatEvent implements Listener {
 
         event.setCancelled(true);
 
-        int tokens = 0;
+        int tokens;
         if (messageCheck.contains("--t")) {
             // Get the letter after --t
             String tokenString = messageCheck.substring(messageCheck.indexOf("--t") + 4);
