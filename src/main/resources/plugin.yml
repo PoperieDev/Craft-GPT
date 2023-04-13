@@ -1,3 +1,11 @@
 name: CraftGPT
 version: '${project.version}'
 main: com.poperie.craftgpt.CraftGPT
+
+commands:
+  tokens:
+    description: Manage tokens
+    usage: /tokens
+  buy:
+    description: Buy tokens
+    usage: /buy

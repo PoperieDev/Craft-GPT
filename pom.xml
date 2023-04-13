@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.poperie</groupId>
-    <artifactId>caves</artifactId>
-    <version>0.1</version>
+    <artifactId>craftgpt</artifactId>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
-    <name>Caves</name>
+    <name>CraftGPT</name>
 
-    <description>Caves plugin for the caves server.</description>
+    <description>Gpt impemented into minecraft</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

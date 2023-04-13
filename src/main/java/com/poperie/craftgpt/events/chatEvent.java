@@ -1,6 +1,8 @@
 package com.poperie.craftgpt.events;
 
 import com.poperie.craftgpt.CraftGPT;
+import com.poperie.craftgpt.playerData.playerDataMemory;
+import com.poperie.craftgpt.playerData.playerDataMethods;
 import com.theokanning.openai.completion.chat.ChatCompletionChoice;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
@@ -23,6 +25,7 @@ public class chatEvent implements Listener {
             return;
         }
         Player player = event.getPlayer();
+        playerDataMemory memory = playerDataMethods.getPlayerMemory(player);
 
         event.setCancelled(true);
 
@@ -36,6 +39,12 @@ public class chatEvent implements Listener {
             player.sendMessage("§cDu skal skrive: §f--t <tal> §cefter dit spørgsmål, for at bestemme hvor mange tokens du vil bruge.");
             return;
         }
+
+        if (memory.getTokens() < tokens) {
+            player.sendMessage("§cDu har ikke nok tokens. §7(Du har " + memory.getTokens() + " tokens)");
+            return;
+        }
+
         String message = messageCheck.substring(1);
         // Remove the --t <number> from the message
         message = message.replace("--t " + tokens, "");
@@ -48,7 +57,9 @@ public class chatEvent implements Listener {
             @Override
             public void run() {
 
-                ChatMessage system = new ChatMessage("system", "Du er en hjælpsom Minecraft Pro-spiller, og du er altid klar til at besvare spørgsmål om Minecraft. Du er en af de bedste Minecraft spillere i verden.");
+                memory.setTokens(memory.getTokens() - finalTokens);
+
+                ChatMessage system = new ChatMessage("system", "Du er en hjælpsom Minecraft Pro-spiller, og du er altid klar til at besvare spørgsmål om Minecraft. Du er en af de bedste Minecraft spiller i verden.");
                 ChatMessage user = new ChatMessage("user", finalMessage);
                 List<ChatMessage> messages = Arrays.asList(system, user);
 
