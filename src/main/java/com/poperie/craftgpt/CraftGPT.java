@@ -2,13 +2,12 @@ package com.poperie.craftgpt;
 
 import com.poperie.craftgpt.events.chatEvent;
 import com.poperie.craftgpt.playerData.playerDataEvents;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
 public final class CraftGPT extends JavaPlugin {
-    public static String key;
+
     @Override
     public void onEnable() {
 
@@ -24,8 +23,6 @@ public final class CraftGPT extends JavaPlugin {
         if (!file.exists()) {
             this.saveResource("key.yml", false);
         }
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(this.getDataFolder() + "key.yml"));
-        key = config.getString("key");
     }
 
     @Override

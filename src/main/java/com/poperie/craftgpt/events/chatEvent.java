@@ -8,11 +8,13 @@ import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.service.OpenAiService;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -32,11 +34,21 @@ public class chatEvent implements Listener {
         int tokens;
         if (messageCheck.contains("--t")) {
             // Get the letter after --t
-            String tokenString = messageCheck.substring(messageCheck.indexOf("--t") + 4);
-            // Convert the letter to an integer
-            tokens = Integer.parseInt(tokenString);
+            try {
+                String tokenString = messageCheck.substring(messageCheck.indexOf("--t") + 4);
+                // Convert the letter to an integer
+                tokens = Integer.parseInt(tokenString);
+            } catch (Exception e) {
+                player.sendMessage("§cDu mangler at skrive den mængde tokens du vil bruge: §f--t <tal>");
+                return;
+            }
         } else {
             player.sendMessage("§cDu skal skrive: §f--t <tal> §cefter dit spørgsmål, for at bestemme hvor mange tokens du vil bruge.");
+            return;
+        }
+
+        if (tokens < 1) {
+            player.sendMessage("§cDu skal bruge mindst 1 token.");
             return;
         }
 
@@ -53,17 +65,21 @@ public class chatEvent implements Listener {
         player.sendMessage("§7Generating response...");
         int finalTokens = tokens;
         String finalMessage = message;
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(new File("plugins/CraftGPT/key.yml"));
+        String key = config.getString("key");
         Bukkit.getScheduler().runTaskAsynchronously(CraftGPT.getPlugin(CraftGPT.class), new BukkitRunnable() {
             @Override
             public void run() {
 
                 memory.setTokens(memory.getTokens() - finalTokens);
 
+                player.sendMessage("§7Tokens: §f" + memory.getTokens() + " §7(§f-" + finalTokens + "§7)");
+
                 ChatMessage system = new ChatMessage("system", "Du er en hjælpsom Minecraft Pro-spiller, og du er altid klar til at besvare spørgsmål om Minecraft. Du er en af de bedste Minecraft spiller i verden.");
                 ChatMessage user = new ChatMessage("user", finalMessage);
                 List<ChatMessage> messages = Arrays.asList(system, user);
 
-                OpenAiService service = new OpenAiService(CraftGPT.key);
+                OpenAiService service = new OpenAiService(key);
                 ChatCompletionRequest request = ChatCompletionRequest.builder()
                         .messages(messages)
                         .maxTokens(finalTokens)

@@ -9,4 +9,12 @@ public class playerDataMemory {
     public void setTokens(int tokens) {
         this.tokens = tokens;
     }
+
+    public void addTokens(int tokens) {
+        this.tokens += tokens;
+    }
+
+    public void removeTokens(int tokens) {
+        this.tokens -= tokens;
+    }
 }

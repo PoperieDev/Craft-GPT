@@ -16,10 +16,15 @@ public class buyCommand implements CommandExecutor {
         Player player = (Player) sender;
         if (args.length < 1) {
             player.sendMessage("§f ");
-            player.sendMessage("§aKøb tokens:");
-            player.sendMessage("§b5 Token = §a1 EM");
-            player.sendMessage("§bMinimum køb for: §a50 EMs");
-            player.sendMessage("§bBrug: /buy <mængde tokens>");
+            player.sendMessage("§8[ §a§lKØB TOKENS §8]");
+            player.sendMessage("§f  " + "§a1 EM §b= §a5 tokens");
+            player.sendMessage("§f  " + "§aMinimum køb for: §b50 EMs");
+            player.sendMessage("§f  " + "§aBrug: §b/buy <mængde tokens>");
+            player.sendMessage("§f ");
+            player.sendMessage("§8[ §a§lINFO §8]");
+            player.sendMessage("§f  " + "§aTokens bliver brugt som betaling til API'en");
+            player.sendMessage("§f  " + "§a50 Tokens giver dig et svar på ca. 300-500 Ord");
+            player.sendMessage("§f  " + "§aDu mister dine tokens efter du har fået svar, ingen refund");
             player.sendMessage("§f ");
             return true;
         }
@@ -39,11 +44,15 @@ public class buyCommand implements CommandExecutor {
             return true;
         }
         int ems = amount / 5;
+        player.sendMessage("§f ");
+        player.sendMessage("§8[ §a§lKØB TOKENS §8]");
+        player.sendMessage("§a  En staff vil skrive til dig hurtigst muligt");
+        player.sendMessage("§f ");
         for (Player loopPlayer : Bukkit.getOnlinePlayers()) {
             if (loopPlayer.hasPermission("craftgpt.admin")) {
                 loopPlayer.sendMessage("§f ");
-                loopPlayer.sendMessage("§a§lKØB");
-                loopPlayer.sendMessage("§a" + player.getName() + " §bVil gerne købe §a" + amount + " tokens §bfor §a" + ems + " EMs§b!");
+                loopPlayer.sendMessage("§8[ §a§lKØB §8]");
+                loopPlayer.sendMessage("§b  " + player.getName() + " §aVil gerne købe §b" + amount + " tokens §afor §b" + ems + " EMsa§a!");
                 loopPlayer.sendMessage("§f ");
             }
         }
