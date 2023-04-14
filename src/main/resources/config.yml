@@ -1,0 +1,5 @@
+config:
+  scoreboard: true
+  buy: true
+  broadcastAnswers: true
+  freeTokens: 50

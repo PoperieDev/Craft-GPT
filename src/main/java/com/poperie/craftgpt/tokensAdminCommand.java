@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static com.poperie.craftgpt.playerData.playerDataMethods.getPlayerMemory;
+import static com.poperie.craftgpt.scoreboard.createScoreboard;
 
 public class tokensAdminCommand implements CommandExecutor {
     @Override
@@ -19,6 +20,7 @@ public class tokensAdminCommand implements CommandExecutor {
             playerDataMemory memory = getPlayerMemory(player);
             player.sendMessage("§aDu har: §b" + memory.getTokens() + " tokens§a!");
             player.sendMessage("§aDu kan købe tokens via §b/buy");
+            createScoreboard(player);
             return true;
         }
         if (args.length < 3) {
@@ -56,6 +58,8 @@ public class tokensAdminCommand implements CommandExecutor {
                 player.sendMessage("§aSet §b" + target.getName() + "'s §atokens to §b" + amount + "§a! §7(" + memory.getTokens() + "§7)");
                 break;
         }
+        createScoreboard(target);
+        createScoreboard(target);
         try {
             if (args[3] != null && args[3].equals("yes")) {
                 player.getServer().broadcastMessage("§f ");

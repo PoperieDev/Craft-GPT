@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static com.poperie.craftgpt.configLoader.getBuy;
+
 public class buyCommand implements CommandExecutor {
 
     @Override
@@ -14,6 +16,11 @@ public class buyCommand implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
+
+        if (!(getBuy())) {
+            return true;
+        }
+
         if (args.length < 1) {
             player.sendMessage("§f ");
             player.sendMessage("§8[ §a§lKØB TOKENS §8]");
@@ -23,7 +30,7 @@ public class buyCommand implements CommandExecutor {
             player.sendMessage("§f ");
             player.sendMessage("§8[ §a§lINFO §8]");
             player.sendMessage("§f  " + "§aTokens bliver brugt som betaling til API'en");
-            player.sendMessage("§f  " + "§a50 Tokens giver dig et svar på ca. 300-500 Ord");
+            player.sendMessage("§f  " + "§a100 Tokens giver dig et svar på ca. 300-500 Ord");
             player.sendMessage("§f  " + "§aDu mister dine tokens efter du har fået svar, ingen refund");
             player.sendMessage("§f ");
             return true;

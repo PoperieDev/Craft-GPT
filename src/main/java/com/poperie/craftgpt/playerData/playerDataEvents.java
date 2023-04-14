@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.File;
 
+import static com.poperie.craftgpt.configLoader.getFreeTokens;
 import static com.poperie.craftgpt.playerData.playerDataMethods.getPlayerMemoryFilePath;
 
 public class playerDataEvents implements Listener {
@@ -22,7 +23,7 @@ public class playerDataEvents implements Listener {
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
             memory.setTokens(config.getInt("tokens"));
         } else {
-            memory.setTokens(0);
+            memory.setTokens(getFreeTokens());
         }
         playerDataMethods.setPlayerMemory(event.getPlayer(), memory);
     }
