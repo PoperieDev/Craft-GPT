@@ -9,3 +9,6 @@ commands:
   buy:
     description: Buy tokens
     usage: /buy
+  ask:
+    description: Ask a question
+    usage: /ask <token amount> <question>

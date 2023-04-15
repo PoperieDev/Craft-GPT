@@ -1,6 +1,8 @@
 package com.poperie.craftgpt;
 
-import com.poperie.craftgpt.events.chatEvent;
+import com.poperie.craftgpt.commands.askCommand;
+import com.poperie.craftgpt.commands.buyCommand;
+import com.poperie.craftgpt.commands.tokensAdminCommand;
 import com.poperie.craftgpt.playerData.playerDataEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -24,9 +26,9 @@ public final class CraftGPT extends JavaPlugin implements Listener {
         // Commands
         this.getCommand("tokens").setExecutor(new tokensAdminCommand());
         this.getCommand("buy").setExecutor(new buyCommand());
+        this.getCommand("ask").setExecutor(new askCommand());
 
         // Events
-        getServer().getPluginManager().registerEvents(new chatEvent(), this);
         getServer().getPluginManager().registerEvents(new playerDataEvents(), this);
         getServer().getPluginManager().registerEvents(this, this);
         // Get the secret key from the key.yml file

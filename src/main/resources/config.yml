@@ -1,5 +1,5 @@
 config:
-  scoreboard: true
-  buy: true
-  broadcastAnswers: true
-  freeTokens: 50
+  scoreboard: false
+  buy: false
+  broadcastAnswers: false
+  freeTokens: 0

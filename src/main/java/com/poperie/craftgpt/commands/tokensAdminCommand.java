@@ -1,4 +1,4 @@
-package com.poperie.craftgpt;
+package com.poperie.craftgpt.commands;
 
 import com.poperie.craftgpt.playerData.playerDataMemory;
 import org.bukkit.command.Command;
