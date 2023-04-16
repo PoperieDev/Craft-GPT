@@ -64,7 +64,7 @@ public class tokensAdminCommand implements CommandExecutor {
             if (args[3] != null && args[3].equals("yes")) {
                 player.getServer().broadcastMessage("§f ");
                 player.getServer().broadcastMessage("§8[ §a§lKØB §8]");
-                player.getServer().broadcastMessage("§b  " + player.getName() + " §aHar købt §b" + amount + " Tokens!");
+                player.getServer().broadcastMessage("§b  " + target.getName() + " §aHar købt §b" + amount + " Tokens!");
                 player.getServer().broadcastMessage("§f ");
             }
         } catch (Exception e) {
