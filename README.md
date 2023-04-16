@@ -10,10 +10,8 @@ Please read the **LICENSE** before using the plugin 🤗
 /tokens Displays how many tokens you have, or allows you to add/remove/set other players tokens (Permission: craftgpt.admin needed for this)
 /buy Allows a user to purchase tokens (No config to edit currency or price as this is just a test)
 **How to use the AI**
-1. Use "!" to start a chat
-2. Then type your question for the AI
-3. Type "--t <number>" at the end to use a specific amount of tokens
+1. Use the command: /ask <Token amount> <Question>
 
-*Example:* !Hvordan får man træ i minecraft? --t 100
+*Example:* /ask 50 What is youtube?
 
 DK
